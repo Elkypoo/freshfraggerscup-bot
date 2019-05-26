@@ -11,7 +11,6 @@
     "discord.js": "^11.2.1",
     "enmap": "^2.6.3",
     "fs": "0.0.1-security",
-    "google-search-scraper": "^0.1.0",
     "opusscript": "0.0.6",
     "read-text-file": "^1.1.0",
     "steamidconvert": "^0.2.4",
@@ -19,14 +18,12 @@
     "jsonpath-plus": "0.19.0",
     "steam-community": "0.2.2",
     "steamid": "1.1.2"
-
-
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ElkTF2",
+  "author": "ElkTF2#9022",
   "license": "ISC",
   "repository": {
     "type": "git",

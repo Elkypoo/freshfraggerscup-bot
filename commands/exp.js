@@ -1,4 +1,4 @@
-module.exports.run = (client, message, args, config) => {
+module.exports.run = (client, message, args) => {
     const Discord = require("discord.js")
     const steam = require('steamidconvert')(client.login(process.env.STEAM_TOKEN));
     const SteamID = require('steamid');
