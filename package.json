@@ -12,10 +12,15 @@
     "enmap": "^2.6.3",
     "fs": "0.0.1-security",
     "google-search-scraper": "^0.1.0",
-    "openweather-apis": "^3.3.5",
     "opusscript": "0.0.6",
     "read-text-file": "^1.1.0",
-    "steamidconvert": "^0.2.4"
+    "steamidconvert": "^0.2.4",
+    "request": "2.88.0",
+    "jsonpath-plus": "0.19.0",
+    "steam-community": "0.2.2",
+    "steamid": "1.1.2"
+
+
   },
   "devDependencies": {},
   "scripts": {
