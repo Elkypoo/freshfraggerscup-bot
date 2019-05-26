@@ -190,7 +190,7 @@ module.exports.run = (client, message, args, config) => {
             console.log(`Got SID64 (${sid64}) and SID3 (${sid3})`)
 
             var steam = require('steam-community'),
-                client = steam();
+                steamClient = steam();
 
             request(`http://logs.tf/json_search?&player=${sid64}&limit=20`, function (error, response, body) {
                 if (error) {
