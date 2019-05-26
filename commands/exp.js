@@ -200,7 +200,9 @@ module.exports.run = (client, message, args, config) => {
                     if (etf2lerror) {
                         console.log(`ETF2L: ${etf2lerror}`)
                     }
-                    var etf2l = JSON.parse(etf2lbody)
+                    if (etf2lbody[0] != "<") {
+                        var etf2l = JSON.parse(etf2lbody)
+                    }
                     console.log('got etf2l parsed')
                     if (etf2l.player) {
                         var etf2lpage = `http://etf2l.org/forum/user/${etf2l.player.id}`
