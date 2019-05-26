@@ -22,6 +22,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "ElkTF2",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elkypoo/freshfraggerscup-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Elkypoo/freshfraggerscup-bot/issues"
+  },
+  "homepage": "https://github.com/Elkypoo/freshfraggerscup-bot#readme"
 }
