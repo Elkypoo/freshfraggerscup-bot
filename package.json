@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "DEPENDENCIES (YOU MUST INSTALL THESE IN ORDER TO RUN THIS BOT):\r     - node.js [https://nodejs.org/en/]\r     - pm2 [http://pm2.keymetrics.io/]",
   "main": "bot.js",
+  "engines": {
+    "npm": "6.x"
+  },
   "dependencies": {
     "discord.js": "^11.2.1",
     "enmap": "^2.6.3",
