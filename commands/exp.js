@@ -4,13 +4,12 @@ module.exports.run = (client, message, args, config) => {
     const SteamID = require('steamid');
     const fs = require('fs')
     const request = require('request');
-    const jp = {
-        query: function (obj, pathExpression) {
-            return require('jsonpath-plus')({
-                json: obj,
-                path: pathExpression
-            });
-        }
+    const jp = require('jsonpath-plus');
+    jp.query = function (obj, pathExpression) {
+        return jp({
+            json: obj,
+            path: pathExpression
+        });
     }
 
     var totalDpm = 0;
