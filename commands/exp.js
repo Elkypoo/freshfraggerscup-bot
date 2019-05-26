@@ -202,6 +202,8 @@ module.exports.run = (client, message, args, config) => {
                     }
                     if (etf2lbody[0] != "<") {
                         var etf2l = JSON.parse(etf2lbody)
+                    } else {
+                        var etf2l = "fuckIts3AMWhyDoIDoThisToMyself<3"
                     }
                     console.log('got etf2l parsed')
                     if (etf2l.player) {
