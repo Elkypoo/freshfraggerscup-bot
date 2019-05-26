@@ -1,6 +1,6 @@
 module.exports.run = (client, message, args) => {
     const Discord = require("discord.js")
-    const steam = require('steamidconvert')(client.login(process.env.STEAM_TOKEN));
+    const steam = require('steamidconvert')(process.env.STEAM_TOKEN);
     const SteamID = require('steamid');
     const fs = require('fs')
     const request = require('request');
@@ -188,9 +188,6 @@ module.exports.run = (client, message, args) => {
         getSteamIDs(function (sid64, sid3) {
 
             console.log(`Got SID64 (${sid64}) and SID3 (${sid3})`)
-
-            var steam = require('steam-community'),
-                steamClient = steam();
 
             request(`http://logs.tf/json_search?&player=${sid64}&limit=20`, function (error, response, body) {
                 if (error) {
