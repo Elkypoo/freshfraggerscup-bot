@@ -66,7 +66,7 @@ client.on("message", (message) => {
         if (err) {
             console.log(err);
         } else {
-          message.edit(`\`\`\`${message.author.id} = {
+          message.channel.guild.channels.find("name", "accept-deny").send(`\`\`\`${message.author.id} = {
             status: "👀",
             sid64: ${sid64}
         }\`\`\``)
