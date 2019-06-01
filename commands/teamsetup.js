@@ -11,26 +11,26 @@ module.exports.run = (client, message, args) => {
             name: `${args.join(" ")}`,
         }).then(
 
-            /*ffc.createChannel(args.join(" "), {
+            ffc.createChannel(`${args.join(" ")}`, {
                 type: 'category',
                 permissionOverwrites: [{
-                    id: ffc.roles.find('name', args.join(" ")).id,
+                    id: ffc.roles.find('name',`${args.join(" ")}`).id,
                     deny: ['MANAGE_MESSAGES'],
                     allow: ['SEND_MESSAGES', 'READ_MESSAGES', 'READ_MESSAGE_HISTORY', 'VIEW_CHANNEL']
                 }]
             })
-                .then(
+                /*.then(
 
                     ffc.createChannel("discussion", "text")
                         .then(channel => {
-                            let category = ffc.channels.find(c => c.name == args.join(" ") && c.type == "category");
+                            let category = ffc.channels.find(c => c.name == `${args.join(" ")}` && c.type == "category");
 
                             if (!category) throw new Error("Category channel does not exist");
                             channel.setParent(category.id);
 
                             ffc.createChannel("Voice", "voice")
                                 .then(channel => {
-                                    let category = ffc.channels.find(c => c.name == args.join(" ") && c.type == "category");
+                                    let category = ffc.channels.find(c => c.name == `${args.join(" ")}` && c.type == "category");
 
                                     if (!category) throw new Error("Category channel does not exist");
                                     channel.setParent(category.id);
@@ -39,6 +39,7 @@ module.exports.run = (client, message, args) => {
                         })
 
                 )*/
+
         )
 
 
