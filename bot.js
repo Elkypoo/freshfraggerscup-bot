@@ -22,7 +22,8 @@ fs.readdir("./commands/", (err, files) => {
 
 client.on("ready", () => {
   console.log("Ready to frag!");
-  client.user.setPresence({ game: { name: 'by myself :(', type: 2 } });
+  client.user.setPresence({ game: { name: 'with my code :p', type: 2 } });
+  "181543685744361482".send("I have been restarted...")
 
   try {
     client.guilds.map((guild) => {
@@ -43,6 +44,13 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
   if (message.author.bot) return;
+  if (message.channel.id == "584196106137763872") {
+    if (message.content.split(/ +/g)[0].indexOf("steamcommunity.com") != -1) {
+      console.log(message.content.split(/ +/g)[0])
+      message.author.send("Request received! You will receive a message on whether or not you have been accepted into the tournament. \n\nIf you have any questions, you can send them in <#576533066131046406>. We hope to see you accepted into the tournament!")
+      guild.channels.find("name", "accept-deny").send(`$<@${message.author.id}> requests with Steam ${message.content.split(/ +/g)[0]}.\nUse \`\`\`<@${message.author.id}>\`\`\` when accepting or denying.`)
+    }
+  }
   if (message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();

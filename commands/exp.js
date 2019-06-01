@@ -5,12 +5,6 @@ module.exports.run = (client, message, args, config) => {
     const fs = require('fs')
     const request = require('request');
     const jp = require('jsonpath');
-    /*jp.query = function(obj, pathExpression) {
-        return jp({
-            json: obj,
-            path: pathExpression
-        });
-    }*/
 
     var totalDpm = 0;
     var totalHeals = 0;
