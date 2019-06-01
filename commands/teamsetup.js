@@ -10,10 +10,16 @@ module.exports.run = (client, message, args) => {
         ffc.createRole({
             name: `${args.join(" ")}`,
         }).then(newRole => {
-            permissions = [{
-                id: newRole.id,
-                allow: 509952
-            }]
+            permissions = [
+                {
+                    id: ffc.defaultRole.id,
+                    deny: 2146958839
+                },
+                {
+                    id: newRole.id,
+                    allow: 66571584
+                }
+            ]
 
             ffc.createChannel(`${args.join(" ")}`, {
                 type: 'category',
@@ -21,13 +27,18 @@ module.exports.run = (client, message, args) => {
             })
                 .then(
 
-                    ffc.createChannel("discussion", "text")
+                    ffc.createChannel("general", "text")
                         .then(channel => {
                             channel.setParent(ffc.channels.find('name', args.join(" ")));
 
                             ffc.createChannel("Voice", "voice")
                                 .then(channel => {
                                     channel.setParent(ffc.channels.find('name', args.join(" ")));
+
+                                    ffc.createChannel("important-stuff", "text")
+                                        .then(channel => {
+                                            channel.setParent(ffc.channels.find('name', args.join(" ")));
+                                        })
                                 })
 
                         })
