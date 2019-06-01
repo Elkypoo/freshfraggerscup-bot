@@ -61,7 +61,7 @@ client.on("message", (message) => {
       var steamLink = message.content.split(/ +/g)[0]
 
 
-      getSteamIDs(function (sid64, sid3) {
+      getSteamIDs(steamLink, function (sid64, sid3) {
       fs.readFile('players.json', 'utf8', function readFileCallback(err, data) {
         if (err) {
             console.log(err);
