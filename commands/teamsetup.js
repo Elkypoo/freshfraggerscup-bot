@@ -8,10 +8,10 @@ module.exports.run = (client, message, args) => {
         var ffc = message.channel.guild;
 
         ffc.createRole({
-            name: args.join(" "),
+            name: `${args.join(" ")}`,
         }).then(
 
-            ffc.createChannel(args.join(" "), {
+            /*ffc.createChannel(args.join(" "), {
                 type: 'category',
                 permissionOverwrites: [{
                     id: ffc.roles.find('name', args.join(" ")).id,
@@ -34,15 +34,12 @@ module.exports.run = (client, message, args) => {
 
                                     if (!category) throw new Error("Category channel does not exist");
                                     channel.setParent(category.id);
-                                }).catch(console.error)
+                                })
 
-                        }).catch(console.error)
+                        })
 
-                )
-                .catch(console.error)
-
+                )*/
         )
-            .catch(console.error)
 
 
 
