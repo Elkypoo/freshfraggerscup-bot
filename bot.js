@@ -48,7 +48,7 @@ client.on("message", (message) => {
     if (message.content.split(/ +/g)[0].indexOf("steamcommunity.com") != -1) {
       console.log(message.content.split(/ +/g)[0])
       message.author.send("Request received! You will receive a message on whether or not you have been accepted into the tournament. \n\nIf you have any questions, you can send them in <#576533066131046406>. We hope to see you accepted into the tournament!")
-      guild.channels.find("name", "accept-deny").send(`$<@${message.author.id}> requests with Steam ${message.content.split(/ +/g)[0]}.\nUse \`\`\`<@${message.author.id}>\`\`\` when accepting or denying.`)
+      message.channel.guild.channels.find("name", "accept-deny").send(`$<@${message.author.id}> requests with Steam ${message.content.split(/ +/g)[0]}.\nUse \`\`\`<@${message.author.id}>\`\`\` when accepting or denying.`)
     }
   }
   if (message.content.indexOf(config.prefix) !== 0) return;
