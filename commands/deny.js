@@ -8,7 +8,7 @@ module.exports.run = (bot, message, args, config) => {
 
 
     if (args[0] && message.mentions.members.first()) {
-
+        var extMemID = message.mentions.members.first().id
         fs.readFile('players.json', 'utf8', function readFileCallback(err, data) {
             if (err) {
                 console.log(err);
@@ -40,6 +40,6 @@ module.exports.run = (bot, message, args, config) => {
             }
         });
     } else {
-        message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ${config.prefix}accept ${message.author})`)
+        message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ${config.prefix}deny ${message.author})`)
     }
 };
