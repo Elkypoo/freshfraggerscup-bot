@@ -31,9 +31,9 @@ module.exports.run = (bot, message, args, config) => {
                 console.log(obj)
                 json = JSON.stringify(obj);
                 fs.writeFileSync('players.json', json, 'utf8');
-                client.users.get(extMemID).send("We're sorry to inform you that you have been denied entry into the Fresh Fraggers Cup. This decision may be overturned by an Admin, in which case you will receive an acceptance message. For more information on this denial, please ask in our <#576533066131046406> channel or message an Admin.")
-                if (client.users.get(extMemID).roles.has(message.guild.roles.find('name', 'Players'))) {
-                    client.users.get(extMemID).removeRole(message.guild.roles.find('name', 'Players'))
+                bot.users.get(extMemID).send("We're sorry to inform you that you have been denied entry into the Fresh Fraggers Cup. This decision may be overturned by an Admin, in which case you will receive an acceptance message. For more information on this denial, please ask in our <#576533066131046406> channel or message an Admin.")
+                if (bot.users.get(extMemID).roles.has(message.guild.roles.find('name', 'Players'))) {
+                    bot.users.get(extMemID).removeRole(message.guild.roles.find('name', 'Players'))
                 }
                 message.react("❌")
 
