@@ -83,7 +83,7 @@ client.on("message", (message) => {
             }
             console.log(obj)
             json = JSON.stringify(obj);
-            fs.writeFile('players.json', json, 'utf8');
+            fs.writeFileSync('players.json', json, 'utf8');
           }
         });
       });
