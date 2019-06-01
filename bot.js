@@ -67,15 +67,15 @@ client.on("message", (message) => {
             console.log(err);
         } else {
             obj = JSON.parse(data);
-            console.log(`Query if player already signed up: ${(jp.query(obj.players, `$..${extMemID}`)).length}`)
-            if ((jp.query(obj.players, `$..${extMemID}`)).length !== 0) {
-                obj.players[0][extMemID] = {
+            console.log(`Query if player already signed up: ${(jp.query(obj.players, `$..${message.author.id}`)).length}`)
+            if ((jp.query(obj.players, `$..${message.author.id}`)).length !== 0) {
+                obj.players[0][message.author.id] = {
                     status: "👀",
                     sid64: sid64
                 }
             } else {
                 obj.players.push({
-                    [extMemID]: {
+                    [message.author.id]: {
                         status: "👀",
                         sid64: sid64
                     }
