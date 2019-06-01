@@ -54,11 +54,11 @@ client.on("message", (message) => {
   if (message.author.bot) return;
   if (message.channel.id == "584196106137763872") {
     if (message.content.split(/ +/g)[0].indexOf("steamcommunity.com/") != -1) {
+      var steamLink = message.content.split(/ +/g)[0]
       console.log(message.content.split(/ +/g)[0])
       message.author.send("Request received! You will receive a message on whether or not you have been accepted into the tournament. \n\nIf you have any questions, you can send them in <#576533066131046406>. We hope to see you accepted into the tournament!")
       message.channel.guild.channels.find("name", "accept-deny").send(`<@${message.author.id}> requests with Steam ${message.content.split(/ +/g)[0]}\nUse \`<@${message.author.id}>\` when accepting or denying.`)
       message.react("👀")
-      var steamLink = message.content.split(/ +/g)[0]
 
 
       getSteamIDs(steamLink, function (sid64, sid3) {
@@ -144,7 +144,7 @@ client.on('messageReactionRemove', (reaction, user) => {
   )
 });
 
-function getSteamIDs(callback) {
+function getSteamIDs(steamLink, callback) {
   if (steamLink.toLowerCase().indexOf("steamcommunity.com/id".toLowerCase()) != -1) {
     if (steamLink.slice(-1) == "/") {
       customid = steamLink.slice((steamLink.indexOf("d")) + 2, steamLink.lastIndexOf(steamLink.slice(-1)))
