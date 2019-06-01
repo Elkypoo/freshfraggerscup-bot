@@ -21,9 +21,13 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on("ready", () => {
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
   console.log("Ready to frag!");
   client.user.setPresence({ game: { name: 'with my code :p', type: 2 } });
-  client.users.get("181543685744361482").send("I have been restarted...")
+  client.users.get("181543685744361482").send("I have been restarted at " + dateTime)
 
   try {
     client.guilds.map((guild) => {
