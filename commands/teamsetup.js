@@ -27,15 +27,15 @@ module.exports.run = (client, message, args) => {
             })
                 .then(
 
-                    ffc.createChannel("general", "text")
+                    ffc.createChannel("general", "text", permissions)
                         .then(channel => {
                             channel.setParent(ffc.channels.find('name', args.join(" ")));
 
-                            ffc.createChannel("Voice", "voice")
+                            ffc.createChannel("Voice", "voice", permissions)
                                 .then(channel => {
                                     channel.setParent(ffc.channels.find('name', args.join(" ")));
 
-                                    ffc.createChannel("important-stuff", "text")
+                                    ffc.createChannel("important-stuff", "text", permissions)
                                         .then(channel => {
                                             channel.setParent(ffc.channels.find('name', args.join(" ")));
                                         })
