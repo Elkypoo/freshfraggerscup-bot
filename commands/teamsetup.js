@@ -15,7 +15,7 @@ module.exports.run = (client, message, args) => {
                 allow: 509952
             }]
 
-            ffc.createChannel(`${args.join(" ")}`, { type: 'category', permissions})
+            ffc.createChannel(`${args.join(" ")}`, 'category', permissions)
             /*.then(
 
                 ffc.createChannel("discussion", "text")
