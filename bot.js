@@ -45,10 +45,14 @@ client.on("ready", () => {
 client.on("message", (message) => {
   if (message.author.bot) return;
   if (message.channel.id == "584196106137763872") {
-    if (message.content.split(/ +/g)[0].indexOf("steamcommunity.com") != -1) {
+    if (message.content.split(/ +/g)[0].indexOf("steamcommunity.com/") != -1) {
       console.log(message.content.split(/ +/g)[0])
       message.author.send("Request received! You will receive a message on whether or not you have been accepted into the tournament. \n\nIf you have any questions, you can send them in <#576533066131046406>. We hope to see you accepted into the tournament!")
-      message.channel.guild.channels.find("name", "accept-deny").send(`$<@${message.author.id}> requests with Steam ${message.content.split(/ +/g)[0]}.\nUse \`\`\`<@${message.author.id}>\`\`\` when accepting or denying.`)
+      message.channel.guild.channels.find("name", "accept-deny").send(`<@${message.author.id}> requests with Steam ${message.content.split(/ +/g)[0]}\nUse \`<@${message.author.id}>\` when accepting or denying.`)
+      message.react("👀")
+    } else {
+      message.delete()
+      message.author.send("Your request has to be a link to your Steam profile. Because it was not, it has been deleted. You can repost it at any time.")
     }
   }
   if (message.content.indexOf(config.prefix) !== 0) return;
