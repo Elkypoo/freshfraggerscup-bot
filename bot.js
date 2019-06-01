@@ -23,7 +23,7 @@ fs.readdir("./commands/", (err, files) => {
 client.on("ready", () => {
   console.log("Ready to frag!");
   client.user.setPresence({ game: { name: 'with my code :p', type: 2 } });
-  "181543685744361482".send("I have been restarted...")
+  client.users.get("181543685744361482").send("I have been restarted...")
 
   try {
     client.guilds.map((guild) => {

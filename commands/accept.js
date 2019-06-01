@@ -31,8 +31,8 @@ module.exports.run = (bot, message, args, config) => {
                                 console.log(obj)
                                 json = JSON.stringify(obj);
                                 fs.writeFile('players.json', json, 'utf8');
-                                extMemID.send("You have been accepted into the Fresh Fraggers Cup! You are now allowed to create a team. Once you have all the players you want (from your regional looking-for channels or elsewhere), you can follow the instructions in <#584206605139050501> to create your team.")
-                                extMemID.addRole(message.guild.roles.find('name', 'Players'))
+                                client.users.get(extMemID).send("You have been accepted into the Fresh Fraggers Cup! You are now allowed to create a team. Once you have all the players you want (from your regional looking-for channels or elsewhere), you can follow the instructions in <#584206605139050501> to create your team.")
+                                client.users.get(extMemID).addRole(message.guild.roles.find('name', 'Players'))
                                 message.react("✅")
                             
                         }
