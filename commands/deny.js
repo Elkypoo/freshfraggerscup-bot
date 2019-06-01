@@ -18,13 +18,13 @@ module.exports.run = (bot, message, args, config) => {
                 if ((jp.query(obj.players, `$..${extMemID}`)).length !== 0) {
                     obj.players[0][extMemID] = {
                         status: "❌",
-                        sid64: sid64
+                        sid64: obj.players[0][extMemID].sid64
                     }
                 } else {
                     obj.players.push({
                         [extMemID]: {
                             status: "❌",
-                            sid64: sid64
+                            sid64: "n/a"
                         }
                     })
                 }
@@ -40,6 +40,6 @@ module.exports.run = (bot, message, args, config) => {
             }
         });
     } else {
-        message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ${config.prefix}deny ${message.author})`)
+        message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ${config.prefix} deny ${message.author})`)
     }
 };
