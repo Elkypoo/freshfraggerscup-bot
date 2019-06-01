@@ -3,6 +3,11 @@ const config = require("./config.json");
 const fs = require("fs")
 const client = new Discord.Client();
 const Enmap = require("enmap");
+const steam = require('steamidconvert')(config.steamapi);
+const SteamID = require('steamid');
+const fs = require('fs')
+const request = require('request');
+const jp = require("jsonpath");
 
 
 var rolemsg;
@@ -54,6 +59,37 @@ client.on("message", (message) => {
       message.author.send("Request received! You will receive a message on whether or not you have been accepted into the tournament. \n\nIf you have any questions, you can send them in <#576533066131046406>. We hope to see you accepted into the tournament!")
       message.channel.guild.channels.find("name", "accept-deny").send(`<@${message.author.id}> requests with Steam ${message.content.split(/ +/g)[0]}\nUse \`<@${message.author.id}>\` when accepting or denying.`)
       message.react("👀")
+      var steamLink = message.content.split(/ +/g)[0]
+
+
+      getSteamIDs(function (sid64, sid3) {
+      fs.readFile('players.json', 'utf8', function readFileCallback(err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            obj = JSON.parse(data);
+            console.log(`Query if player already signed up: ${(jp.query(obj.players, `$..${extMemID}`)).length}`)
+            if ((jp.query(obj.players, `$..${extMemID}`)).length !== 0) {
+                obj.players[0][extMemID] = {
+                    status: "👀",
+                    sid64: sid64
+                }
+            } else {
+                obj.players.push({
+                    [extMemID]: {
+                        status: "👀",
+                        sid64: sid64
+                    }
+                })
+            }
+            console.log(obj)
+            json = JSON.stringify(obj);
+            fs.writeFile('players.json', json, 'utf8');
+          }
+        });
+      });
+
+
     } else {
       message.delete()
       message.author.send("Your request has to be a link to your Steam profile. Because it was not, it has been deleted. You can repost it at any time.")
@@ -109,6 +145,39 @@ client.on('messageReactionRemove', (reaction, user) => {
   )
 });
 
-
+function getSteamIDs(callback) {
+  if (steamLink.toLowerCase().indexOf("steamcommunity.com/id".toLowerCase()) != -1) {
+    if (steamLink.slice(-1) == "/") {
+      customid = steamLink.slice((steamLink.indexOf("d")) + 2, steamLink.lastIndexOf(steamLink.slice(-1)))
+    } else {
+      customid = `${steamLink.slice((steamLink.indexOf("d")) + 2, steamLink.lastIndexOf(steamLink.slice(-1)))}${steamLink.slice(-1)}`
+    }
+    steam.convertVanity(customid, function (err, res) {
+      if (err) {
+        message.author.send("Your request has to be a link to your Steam profile. It seems that it wasn't quite correct and so it has been deleted. You can repost it at any time. Try copy-pasting it from your profile. Contact an Admin if this was a correct link. ")
+        console.log(err)
+      } else {
+        steamid64 = res
+        sid64 = steamid64
+        sid3 = (new SteamID(sid64)).steam3();
+        callback(sid64, sid3)
+      }
+    })
+  } else if (steamLink.toLowerCase().indexOf("steamcommunity.com/profiles".toLowerCase()) != -1) {
+    if (steamLink.slice(-1) == "/") {
+      steamid64 = steamLink.slice((steamLink.indexOf("l")) + 4, steamLink.lastIndexOf(steamLink.slice(-1)))
+      sid64 = steamid64
+      sid3 = (new SteamID(sid64)).steam3();
+      callback(sid64, sid3)
+    } else {
+      steamid64 = `${steamLink.slice((steamLink.indexOf("l")) + 4, steamLink.lastIndexOf(steamLink.slice(-1)))}${steamLink.slice(-1)}`
+      sid64 = steamid64
+      sid3 = (new SteamID(sid64)).steam3();
+      callback(sid64, sid3)
+    }
+  } else {
+    message.author.send("Your request has to be a link to your Steam profile. It seems that it was incorrect and so it has been deleted. You can repost it at any time. Try copy-pasting it from your profile.")
+  }
+}
 
 client.login(process.env.BOT_TOKEN);
