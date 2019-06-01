@@ -61,7 +61,7 @@ client.on("message", (message) => {
       message.react("👀")
 
 
-      getSteamIDs(steamLink, function (sid64, sid3) {
+      getSteamIDs(steamLink, message, function (sid64, sid3) {
       fs.readFile('players.json', 'utf8', function readFileCallback(err, data) {
         if (err) {
             console.log(err);
@@ -144,7 +144,7 @@ client.on('messageReactionRemove', (reaction, user) => {
   )
 });
 
-function getSteamIDs(steamLink, callback) {
+function getSteamIDs(steamLink, message, callback) {
   if (steamLink.toLowerCase().indexOf("steamcommunity.com/id".toLowerCase()) != -1) {
     if (steamLink.slice(-1) == "/") {
       customid = steamLink.slice((steamLink.indexOf("d")) + 2, steamLink.lastIndexOf(steamLink.slice(-1)))
