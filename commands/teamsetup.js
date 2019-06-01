@@ -16,7 +16,7 @@ module.exports.run = (client, message, args) => {
                 permissionOverwrites: [{
                     id: ffc.roles.find('name',`${args.join(" ")}`),
                     deny: ['MANAGE_MESSAGES'],
-                    allow: ['SEND_MESSAGES', 'READ_MESSAGES', 'READ_MESSAGE_HISTORY', 'VIEW_CHANNEL']
+                    allow: ['VIEW_CHANNEL']
                 }]
             })
                 /*.then(
