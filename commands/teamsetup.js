@@ -14,7 +14,7 @@ module.exports.run = (client, message, args) => {
             ffc.createChannel(`${args.join(" ")}`, {
                 type: 'category',
                 permissionOverwrites: [{
-                    id: ffc.roles.find('name',`${args.join(" ")}`).id,
+                    id: ffc.roles.find('name',`${args.join(" ")}`),
                     deny: ['MANAGE_MESSAGES'],
                     allow: ['SEND_MESSAGES', 'READ_MESSAGES', 'READ_MESSAGE_HISTORY', 'VIEW_CHANNEL']
                 }]
