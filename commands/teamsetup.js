@@ -9,35 +9,37 @@ module.exports.run = (client, message, args) => {
 
         ffc.createRole({
             name: `${args.join(" ")}`,
-        }).then(
+        }).then(newRole => {
+            permissions = [{
+                id: newRole.id,
+                allow: 509952
+            }]
 
-            ffc.createChannel(`${args.join(" ")}`, {
-                type: 'category',
-                permissionOverwrites: [{
-                    id: 584259538555895842,
-                    allow: 509952
-                }]
-            })
-                /*.then(
+            ffc.createChannel(`${args.join(" ")}`, { type: 'category', permissions})
+            /*.then(
 
-                    ffc.createChannel("discussion", "text")
-                        .then(channel => {
-                            let category = ffc.channels.find(c => c.name == `${args.join(" ")}` && c.type == "category");
+                ffc.createChannel("discussion", "text")
+                    .then(channel => {
+                        let category = ffc.channels.find(c => c.name == `${args.join(" ")}` && c.type == "category");
 
-                            if (!category) throw new Error("Category channel does not exist");
-                            channel.setParent(category.id);
+                        if (!category) throw new Error("Category channel does not exist");
+                        channel.setParent(category.id);
 
-                            ffc.createChannel("Voice", "voice")
-                                .then(channel => {
-                                    let category = ffc.channels.find(c => c.name == `${args.join(" ")}` && c.type == "category");
+                        ffc.createChannel("Voice", "voice")
+                            .then(channel => {
+                                let category = ffc.channels.find(c => c.name == `${args.join(" ")}` && c.type == "category");
 
-                                    if (!category) throw new Error("Category channel does not exist");
-                                    channel.setParent(category.id);
-                                })
+                                if (!category) throw new Error("Category channel does not exist");
+                                channel.setParent(category.id);
+                            })
 
-                        })
+                    })
 
-                )*/
+            )*/
+
+        }
+
+
 
         )
 
