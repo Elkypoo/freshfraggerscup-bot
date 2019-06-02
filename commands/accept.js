@@ -34,10 +34,9 @@ module.exports.run = (bot, message, args, config) => {
                 var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
                 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                 var dateTime = date + ' ' + time;
-                fs.writeFileSync('players.json', json, 'utf8')
-                    .then(
-                        message.channel.guild.channels.find("name", "players-join-logs").send(dateTime, { files: ["players.json"] })
-                    )
+                fs.writeFile('players.json', json, 'utf8', function () {
+                    message.channel.guild.channels.find("name", "players-join-logs").send(dateTime, { files: ["players.json"] })
+                })
                 message.guild.members.get(extMemID).send("You have been accepted into the Fresh Fraggers Cup! You are now allowed to create a team. Once you have all the players you want (from your regional looking-for channels or elsewhere), you can follow the instructions in <#584206605139050501> to create your team.")
                 message.guild.members.get(extMemID).addRole(message.guild.roles.find('name', 'Players'))
                 message.react("✅")

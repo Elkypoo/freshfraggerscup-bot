@@ -91,10 +91,9 @@ client.on("message", (message) => {
             var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             var dateTime = date + ' ' + time;
-            fs.writeFileSync('players.json', json, 'utf8')
-              .then(
-                message.channel.guild.channels.find("name", "players-join-logs").send(dateTime, { files: ["players.json"] })
-              )
+            fs.writeFile('players.json', json, 'utf8', function () {
+              message.channel.guild.channels.find("name", "players-join-logs").send(dateTime, { files: ["players.json"] })
+          })
 
           }
         });
