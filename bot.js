@@ -92,7 +92,7 @@ client.on("message", (message) => {
             var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             var dateTime = date + ' ' + time;
             fs.writeFile('players.json', json, 'utf8', function () {
-              message.channel.guild.channels.find("name", "players-join-logs").send(dateTime, { files: ["players.json"] })
+              message.channel.guild.channels.find("name", "players-json-logs").send(dateTime, { files: ["players.json"] })
           })
 
           }
