@@ -30,7 +30,14 @@ module.exports.run = (bot, message, args, config) => {
                 }
                 console.log(obj)
                 json = JSON.stringify(obj);
-                fs.writeFileSync('players.json', json, 'utf8');
+                var today = new Date();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                var dateTime = date + ' ' + time;
+                fs.writeFileSync('players.json', json, 'utf8')
+                    .then(
+                        message.channel.guild.channels.find("name", "players-join-logs").send(dateTime, { files: ["players.json"] })
+                    )
                 message.guild.members.get(extMemID).send("We're sorry to inform you that you have been denied entry into the Fresh Fraggers Cup. This decision may be overturned by an Admin, in which case you will receive an acceptance message. For more information on this denial, please ask in our <#576533066131046406> channel or message an Admin.")
                 if (message.guild.members.get(extMemID).roles.has(message.guild.roles.find('name', 'Players'))) {
                     message.guild.members.get(extMemID).removeRole(message.guild.roles.find('name', 'Players'))

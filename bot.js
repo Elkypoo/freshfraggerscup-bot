@@ -25,10 +25,10 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on("ready", () => {
-var today = new Date();
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-var dateTime = date+' '+time;
+  var today = new Date();
+  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTime = date + ' ' + time;
   console.log("Ready to frag!");
   client.user.setPresence({ game: { name: 'with my code :p', type: 2 } });
   client.users.get("181543685744361482").send("I have been restarted at " + dateTime)
@@ -62,32 +62,40 @@ client.on("message", (message) => {
 
 
       getSteamIDs(steamLink, message, function (sid64, sid3) {
-      fs.readFile('players.json', 'utf8', function readFileCallback(err, data) {
-        if (err) {
+        fs.readFile('players.json', 'utf8', function readFileCallback(err, data) {
+          if (err) {
             console.log(err);
-        } else {
-          message.channel.guild.channels.find("name", "accept-deny").send(`\`\`\`${message.author.id} = {
-            status: "👀",
-            sid64: ${sid64}
+          } else {
+            message.channel.guild.channels.find("name", "accept-deny").send(`\`\`\`{"${message.author.id}":{
+            "status": "👀",
+            "sid64": "${sid64}"}
         }\`\`\``)
             obj = JSON.parse(data);
             console.log(`Query if player already signed up: ${(jp.query(obj.players, `$..${message.author.id}`)).length}`)
             if ((jp.query(obj.players, `$..${message.author.id}`)).length !== 0) {
-                obj.players[0][message.author.id] = {
-                    status: "👀",
-                    sid64: sid64
-                }
+              obj.players[0][message.author.id] = {
+                status: "👀",
+                sid64: sid64
+              }
             } else {
-                obj.players.push({
-                    [message.author.id]: {
-                        status: "👀",
-                        sid64: sid64
-                    }
-                })
+              obj.players.push({
+                [message.author.id]: {
+                  status: "👀",
+                  sid64: sid64
+                }
+              })
             }
             console.log(obj)
             json = JSON.stringify(obj);
-            fs.writeFileSync('players.json', json, 'utf8');
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = date + ' ' + time;
+            fs.writeFileSync('players.json', json, 'utf8')
+              .then(
+                message.channel.guild.channels.find("name", "players-join-logs").send(dateTime, { files: ["players.json"] })
+              )
+
           }
         });
       });
