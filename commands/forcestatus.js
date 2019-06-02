@@ -44,11 +44,11 @@ module.exports.run = (bot, message, args, config) => {
                         fs.writeFile('players.json', json, 'utf8', function () {
                             message.channel.guild.channels.find("name", "players-json-logs").send(dateTime, { files: ["players.json"] })
                         })
-                        if (status = "✅") {
+                        if (status == "✅") {
                             message.guild.members.get(extMemID).send("You have been accepted into the Fresh Fraggers Cup! You are now allowed to create a team. Once you have all the players you want (from your regional looking-for channels or elsewhere), you can follow the instructions in <#584206605139050501> to create your team.")
                             message.guild.members.get(extMemID).addRole(message.guild.roles.find('name', 'Players'))
                             message.react("✅")
-                        } else if (status = "❌") {
+                        } else if (status == "❌") {
                             message.guild.members.get(extMemID).send("We're sorry to inform you that you have been denied entry into the Fresh Fraggers Cup. This decision may be overturned by an Admin, in which case you will receive an acceptance message. For more information on this denial, please ask in our <#576533066131046406> channel or message an Admin.")
                             if (message.guild.members.get(extMemID).roles.has(message.guild.roles.find('name', 'Players'))) {
                                 message.guild.members.get(extMemID).removeRole(message.guild.roles.find('name', 'Players'))
