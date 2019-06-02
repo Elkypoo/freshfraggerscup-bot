@@ -7,7 +7,7 @@ module.exports.run = (bot, message, args, config) => {
     const jp = require('jsonpath');
 
     if (message.guild.member(message.member.id).roles.has(message.guild.roles.find('name', 'Administrator').id)) {
-
+        var steamLink = args[1]
         getSteamIDs(steamLink, message, function (sid64, sid3) {
             if (args[0] && message.mentions.members.first()) {
                 if (args[2]) {
@@ -68,7 +68,6 @@ module.exports.run = (bot, message, args, config) => {
     }
 
     function getSteamIDs(steamLink, message, callback) {
-        var steamLink = args[1]
         if (steamLink.toLowerCase().indexOf("steamcommunity.com/id".toLowerCase()) != -1) {
             if (steamLink.slice(-1) == "/") {
                 customid = steamLink.slice((steamLink.indexOf("d")) + 2, steamLink.lastIndexOf(steamLink.slice(-1)))
