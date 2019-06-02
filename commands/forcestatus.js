@@ -6,7 +6,7 @@ module.exports.run = (bot, message, args, config) => {
     const request = require('request');
     const jp = require('jsonpath');
 
-    if (message.author.roles.has(message.guild.roles.find('name', 'Administrator'))) {
+    if (message.guild.members.get(message.author.id).roles.has(message.guild.roles.find('name', 'Administrator'))) {
 
         getSteamIDs(steamLink, message, function (sid64, sid3) {
             if (args[0] && message.mentions.members.first()) {
