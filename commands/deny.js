@@ -6,7 +6,7 @@ module.exports.run = (bot, message, args, config) => {
     const request = require('request');
     const jp = require('jsonpath');
 
-    if (message.guild.member(message.member.id).roles.has(message.guild.roles.find('name', 'Administrator'))) {
+    if (message.guild.member(message.member.id).roles.has(message.guild.roles.find('name', 'Administrator').id)) {
 
 
         if (args[0] && message.mentions.members.first()) {
