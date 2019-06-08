@@ -66,10 +66,12 @@ client.on("message", (message) => {
           if (err) {
             console.log(err);
           } else {
-            message.channel.guild.channels.find("name", "accept-deny").send(`\`\`\`{"${message.author.id}":{
-            "status": "👀",
-            "sid64": "${sid64}"}
-        }\`\`\``)
+            message.channel.guild.channels.find("name", "accept-deny").send(`\`\`\`{
+            "${message.author.id}": {
+              "status": "👀",
+              "sid64": "${sid64}"
+            }
+        },\`\`\``)
             obj = JSON.parse(data);
             console.log(`Query if player already signed up: ${(jp.query(obj.players, `$..${message.author.id}`)).length}`)
             if ((jp.query(obj.players, `$..${message.author.id}`)).length !== 0) {
