@@ -13,18 +13,16 @@ module.exports.run = (bot, message, args, config) => {
                 console.log(err);
             } else {
                 obj = JSON.parse(data);
-                var accepted = jp.query(obj, `$..players[?(@.status== "✅")]`)
+                var accepted = Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)).length
                 var total = obj.players.length
-                var denied = total - accepted
                 var membercount = message.channel.guild.memberCount
 
                 let info = new Discord.RichEmbed()
                     .setTitle("Fresh Fraggers Cup")
                     .setDescription(`Current info on the Fresh Fraggers Cup`)
                     .setColor("#F95454")
-                    .addField("Accepted", accepted, true)
-                    .addField("Denied", denied, true)
                     .addField("Total", total, true)
+                    .addField("Accepted", accepted, true)
                     .addField("Member Count", membercount, true)
 
                 message.channel.send(info);
