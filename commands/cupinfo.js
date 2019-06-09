@@ -13,6 +13,9 @@ module.exports.run = (bot, message, args, config) => {
                 console.log(err);
             } else {
                 obj = JSON.parse(data);
+                console.log(jp.query(obj, `$..players[?(@.status== "✅")]`))
+                console.log(Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)))
+                console.log(Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)).length)
                 var accepted = jp.query(obj, `$..players[?(@.status== "✅")]`).length
                 var total = obj.players.length
                 var membercount = message.channel.guild.memberCount
