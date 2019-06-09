@@ -7,13 +7,13 @@ module.exports.run = (bot, message, args, config) => {
     const jp = require('jsonpath');
 
 
-    if (message.guild.member(message.member.id).hasPermission("MANAGE_ROLES") && message.mentions.members && args.length > 1) {
+    if (message.guild.member(message.member.id).hasPermission("MANAGE_ROLES")) {
         fs.readFile('players.json', 'utf8', function readFileCallback(err, data) {
             if (err) {
                 console.log(err);
             } else {
                 obj = JSON.parse(data);
-                var accepted = jp.query(obj, `$..players[? (@.status== "✅")]`)
+                var accepted = jp.query(obj, `$..players[?(@.status== "✅")]`)
                 var total = obj.players.length
                 var denied = total - accepted
                 var membercount = message.channel.guild.memberCount
