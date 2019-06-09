@@ -17,13 +17,13 @@ module.exports.run = (bot, message, args, config) => {
                 } else {
                     obj = JSON.parse(data);
                     console.log(`Query if player already signed up: ${(jp.query(obj.players, `$..${extMemID}`)).length}`)
-                    if ((jp.query(obj.players[0], `$..${extMemID}`)).length !== 0) {
+                    if ((jp.query(obj.players, `$..${extMemID}`)).length !== 0) {
                         obj.players[0][extMemID] = {
                             status: "❌",
                             sid64: (jp.query(obj.players, `$..${extMemID}`)).sid64
                         }
                     } else {
-                        obj.players[0].push({
+                        obj.players.push({
                             [extMemID]: {
                                 status: "❌",
                                 sid64: "n/a"
