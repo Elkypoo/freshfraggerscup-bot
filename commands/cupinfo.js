@@ -16,16 +16,16 @@ module.exports.run = (bot, message, args, config) => {
                 console.log(jp.query(obj, `$..players[?(@.status== "✅")]`))
                 console.log(Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)))
                 console.log(Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)).length)
-                var accepted = jp.query(obj, `$..players[?(@.status== "✅")]`).length
+                var accepted = Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)).length
                 var total = obj.players.length
                 var membercount = message.channel.guild.memberCount
 
                 let info = new Discord.RichEmbed()
                     .setTitle("Fresh Fraggers Cup")
-                    .setDescription(`Current info on the Fresh Fraggers Cup`)
+                    .setDescription(`Current info on the Fresh Fraggers Cup:`)
                     .setColor("#F95454")
                     .addField("Total", total, true)
-                    .addField("Accepted", accepted, true)
+                    .addField("Accepted", Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)).length, true)
                     .addField("Member Count", membercount, true)
 
                 message.channel.send(info);
