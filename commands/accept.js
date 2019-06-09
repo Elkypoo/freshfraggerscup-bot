@@ -19,7 +19,7 @@ module.exports.run = (bot, message, args, config) => {
                     if ((jp.query(obj.players, `$..${extMemID}`)).length !== 0) {
                         obj.players[extMemID] = {
                             status: "✅",
-                            sid64: (jp.query(obj.players, `$..${extMemID}`)).sid64
+                            sid64: obj.players[extMemID].sid64
                         }
                     } else {
                         obj.players.push({
