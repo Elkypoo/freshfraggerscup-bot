@@ -79,12 +79,11 @@ client.on("message", (message) => {
                 sid64: sid64
               }
             } else {
-              obj.players.push({
-                [message.author.id]: {
+              obj.players[message.author.id] = {
                   status: "👀",
                   sid64: sid64
                 }
-              })
+              
             }
             console.log(obj)
             json = JSON.stringify(obj);

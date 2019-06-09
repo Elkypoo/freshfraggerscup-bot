@@ -28,12 +28,11 @@ module.exports.run = (bot, message, args, config) => {
                                 sid64: sid64
                             }
                         } else {
-                            obj.players.push({
-                                [extMemID]: {
+                            obj.players[extMemID] = {
                                     status: status,
                                     sid64: sid64
                                 }
-                            })
+                            
                         }
                         console.log(obj)
                         json = JSON.stringify(obj);
