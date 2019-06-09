@@ -24,8 +24,8 @@ module.exports.run = (bot, message, args, config) => {
                     .setTitle("Fresh Fraggers Cup")
                     .setDescription(`Current info on the Fresh Fraggers Cup:`)
                     .setColor("#F95454")
-                    .addField("Total", total, true)
-                    .addField("Accepted", accepted, true)
+                    .addField("Accepted Players", accepted, true)
+                    .addField("Total Players Applied", total, true)
                     .addField("Member Count", membercount, true)
 
                 message.channel.send(info);
