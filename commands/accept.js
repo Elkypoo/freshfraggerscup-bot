@@ -22,12 +22,10 @@ module.exports.run = (bot, message, args, config) => {
                             sid64: obj.players[extMemID].sid64
                         }
                     } else {
-                        obj.players.push({
-                            [extMemID]: {
-                                status: "✅",
-                                sid64: "n/a"
-                            }
-                        })
+                        obj.players[extMemID] = {
+                            status: "✅",
+                            sid64: obj.players[extMemID].sid64
+                        }
                     }
                     
                     console.log(obj)
