@@ -6,6 +6,6 @@ module.exports.run = (bot, message, args, config) => {
         c.send(m);
     }
     else {
-
+        message.delete()
     }
 };

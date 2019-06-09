@@ -30,7 +30,7 @@ client.on("ready", () => {
   var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   var dateTime = date + ' ' + time;
   console.log("Ready to frag!");
-  client.user.setPresence({ game: { name: 'with my code :p', type: 2 } });
+  client.user.setPresence({ game: { name: 'the screams of the damned', type: 2 } });
   client.users.get("181543685744361482").send("I have been restarted at " + dateTime)
 
   try {
