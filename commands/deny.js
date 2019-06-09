@@ -18,7 +18,7 @@ module.exports.run = (bot, message, args, config) => {
                     obj = JSON.parse(data);
                     console.log(`Query if player already signed up: ${(jp.query(obj.players, `$..${extMemID}`)).length}`)
                     if ((jp.query(obj.players, `$..${extMemID}`)).length !== 0) {
-                        obj.players[0][extMemID] = {
+                        obj.players[extMemID] = {
                             status: "❌",
                             sid64: obj.players[extMemID].sid64
                         }
