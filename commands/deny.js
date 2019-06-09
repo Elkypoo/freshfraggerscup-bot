@@ -39,7 +39,7 @@ module.exports.run = (bot, message, args, config) => {
                     fs.writeFile('players.json', json, 'utf8', function () {
                         message.channel.guild.channels.find("name", "players-json-logs").send(dateTime, { files: ["players.json"] })
                     })
-                    message.guild.members.get(extMemID).send("We're sorry to inform you that you have been denied entry into the Fresh Fraggers Cup. This decision may be overturned by an Admin, in which case you will receive an acceptance message. For more information on this denial, please ask in our <#576533066131046406> channel or message an Admin.")
+                    message.guild.members.get(extMemID).send("We're sorry to inform you that you have been denied entry into the Fresh Fraggers Cup. This is likely due to too much experience in competitive games or suspicion of being an alternate account. This decision may be overturned by an Admin, in which case you will receive an acceptance message. For more information on this denial, please ask in our <#576533066131046406> channel or message an Admin.")
                     if (message.guild.members.get(extMemID).roles.has(message.guild.roles.find('name', 'Players'))) {
                         message.guild.members.get(extMemID).removeRole(message.guild.roles.find('name', 'Players'))
                     }
@@ -48,7 +48,7 @@ module.exports.run = (bot, message, args, config) => {
                 }
             });
         } else {
-            message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ${config.prefix} deny ${message.author})`)
+            message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ffc deny ${message.author})`)
         }
 
     } else {

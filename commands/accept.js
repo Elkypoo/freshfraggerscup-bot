@@ -46,7 +46,7 @@ module.exports.run = (bot, message, args, config) => {
                 }
             });
         } else {
-            message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ${config.prefix} accept ${message.author})`)
+            message.channel.send(`Error: You need to mention the player's Discord in this space (e.g. ffc accept ${message.author})`)
         }
 
     } else {
