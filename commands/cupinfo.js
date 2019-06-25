@@ -13,10 +13,8 @@ module.exports.run = (bot, message, args, config) => {
                 console.log(err);
             } else {
                 obj = JSON.parse(data);
-                console.log(jp.query(obj, `$..players[?(@.status== "✅")]`))
-                console.log(Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)))
-                console.log(Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)).length)
                 var accepted = Object.keys(jp.query(obj, `$..players[?(@.status== "✅")]`)).length
+                var denied = Object.keys(jp.query(obj, `$..players[?(@.status== "❌")]`)).length
                 var total = Object.keys(jp.query(obj, `$.players.*`)).length
                 var membercount = message.channel.guild.memberCount
 
@@ -25,6 +23,7 @@ module.exports.run = (bot, message, args, config) => {
                     .setDescription(`Current info on the Fresh Fraggers Cup:`)
                     .setColor("#F95454")
                     .addField("Accepted Players", accepted, true)
+                    .addField("Denied Players", denied, true)
                     .addField("Total Players Applied", total, true)
                     .addField("Member Count", membercount, true)
 
