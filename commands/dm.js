@@ -4,6 +4,7 @@ module.exports.run = (bot, message, args, config) => {
         var m = args.join(" ");
         var c = message.mentions.members.first()
         c.send(m);
+        message.react("✅")
     }
     else {
         message.delete()
