@@ -7,7 +7,7 @@ const steam = require('steamidconvert')(process.env.STEAM_TOKEN);
 const SteamID = require('steamid');
 const request = require('request');
 const jp = require("jsonpath");
-
+//bruh
 
 var rolemsg;
 var guildUser;
